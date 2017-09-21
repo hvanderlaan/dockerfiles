@@ -13,5 +13,5 @@ docker-compose down -v --rmi all
 ```
 
 ## Todo
-[ ] create docker-compose.yml for all dockers
-[ ] add more containers
+- [ ] create docker-compose.yml for all dockers
+- [ ] add more containers
