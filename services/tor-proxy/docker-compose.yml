@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+    tor:
+        build:
+            context: ./tor
+        image: services/tor
+        container_name: tor
+    privoxy:
+        build:
+            context: ./privoxy
+        depends_on:
+            - tor
+        image: services/privoxy
+        container_name: privoxy
+        ports: 
+            - 8118:8118
+        links:
+            - tor

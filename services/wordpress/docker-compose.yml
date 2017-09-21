@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    wp-backend:
+        image: mysql:5.7
+        volumes:
+            - db_data:/var/lib/mysql
+        restart: always
+        container_name: wordpress-backend
+        environment:
+            MYSQL_ROOT_PASSWORD: CKQlQBPByeiNnNHKGRak13Ci
+            MYSQL_DATABASE: wordpress
+            MYSQL_USER: dockerwp
+            MYSQL_PASSWORD: 8fhT4AmRvln7CkKjjesAKwVa
+
+    wp-frontend:
+        depends_on:
+            - wp-backend
+        image: wordpress:latest
+        ports:
+            - 8000:80
+        restart: always
+        container_name: wordpress-frontend
+        environment:
+            WORDPRESS_DB_HOST: wp-backend:3306
+            WORDPRESS_DB_USER: dockerwp
+            WORDPRESS_DB_PASSWORD: 8fhT4AmRvln7CkKjjesAKwVa
+
+volumes:
+    db_data:
